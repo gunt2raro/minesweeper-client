@@ -1,0 +1,26 @@
+<header>
+    <div class="title">
+        <h2>Minesweeper</h2>
+    </div>
+    <div class="half"></div>
+    <button 
+        type="button" 
+        *ngIf="!user"
+        class="btn btn-dark" 
+        (click)="signIn()">Sign In</button>
+    <button      
+        *ngIf="!user"
+        type="button" 
+        class="btn btn-link" 
+        (click)="logIn()">Log In</button>
+    <button      
+        *ngIf="user"
+        type="button" 
+        class="btn btn-danger" 
+        (click)="logOut()">Log Out</button>
+    <button      
+        *ngIf="user"
+        type="button" 
+        class="btn btn-link user" 
+        (click)="logIn()">Hi, {{ user.username }}</button>
+</header>
