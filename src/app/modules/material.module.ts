@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
-import { MatButtonToggleModule } from "@angular/material";
 import { MatDialogModule } from "@angular/material/dialog";
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
 
 @NgModule({
     imports: [MatDialogModule, MatButtonToggleModule],

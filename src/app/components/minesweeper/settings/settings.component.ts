@@ -1,8 +1,8 @@
-import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
-import { Component, Inject, OnDestroy, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Dimensions } from "src/app/models/dimensions.model";
 import { GameType } from "src/app/enums/game-type.enum";
+import { Dimensions } from "src/app/models/dimensions.model";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Component, Inject, OnDestroy, OnInit } from "@angular/core";
+import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 
 @Component({
     templateUrl: './settings.component.html',
