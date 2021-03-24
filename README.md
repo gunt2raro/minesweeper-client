@@ -1,6 +1,10 @@
 # Minesweeper
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.12.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.5
+## Node version
+
+node >= 13.14.0
+npm >= 6.14.4
 
 ## Development server
 
