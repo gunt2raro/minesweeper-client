@@ -58,7 +58,7 @@ export class RegisterComponent {
                 .catch((error) => {
                     this.hasErrors = true
                     this.errors
-                        .push(error)
+                        .push(error.error.message)
                 })
         }
     }

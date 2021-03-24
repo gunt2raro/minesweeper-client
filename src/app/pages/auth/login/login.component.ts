@@ -49,12 +49,15 @@ export class LoginComponent {
                             .navigate([
                                 'minesweeper'
                             ])
+                    } else {
+                        this.hasErrors = true
+                        this.errors.push("Wrong Credentials!")
                     }
                 })
                 .catch((error) => {
                     this.hasErrors = true
                     this.errors
-                        .push(error)
+                        .push(error.error.message)
                 })
         }
     }
