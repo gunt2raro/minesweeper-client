@@ -59,9 +59,14 @@ export class SettingsComponent implements OnInit, OnDestroy {
                 this.dimensions.height = 16
                 this.dimensions.mines = 99
                 break;
+            case GameType.CUSTOM :
+                this.showCustom = true
+                break;
         }
         this.dimensions.gameType = gameType
-        this.dialogRef.close(this.dimensions)
+        if(!this.showCustom) {
+            this.dialogRef.close(this.dimensions)
+        }
     }
 
     ngOnDestroy() { }

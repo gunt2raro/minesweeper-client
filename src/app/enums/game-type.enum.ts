@@ -1,5 +1,6 @@
 export enum GameType {
     EASY='EASY',
     NORMAL='NORMAL',
-    HARD='HARD'
+    HARD='HARD',
+    CUSTOM='CUSTOM'
 }

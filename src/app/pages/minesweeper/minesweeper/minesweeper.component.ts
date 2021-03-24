@@ -10,6 +10,7 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { ScoreService } from 'src/app/services/score.service';
 import { MinesweeperService } from "src/app/services/minesweeper.service";
 import { SettingsComponent } from 'src/app/components/minesweeper/settings/settings.component';
+import { GameType } from 'src/app/enums/game-type.enum';
 
 @AutoUnsubscribe()
 @Component({
@@ -167,7 +168,11 @@ export class MinesweeperComponent implements OnInit, OnDestroy {
                 .then((res: any) => {
                     this.game = res.data
                     this.winner = res.winner
-                    if(this.winner && this.user) {
+                    if(
+                        this.winner && 
+                        this.user && 
+                        this.dimensions.gameType != GameType.CUSTOM
+                    ) {
                         this.scoreService
                             .create({
                                 time: this.time.format("HH:mm:ss"),
