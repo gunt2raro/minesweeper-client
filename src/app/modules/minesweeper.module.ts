@@ -3,11 +3,13 @@ import { RouterModule } from "@angular/router";
 import { GlobalModule } from "./global.module";
 import { MaterialModule } from "./material.module";
 import { MinesweeperRoutes } from '../routes/minesweeper.routes';
-import { MinesweeperComponent } from "../pages/minesweeper/minesweeper.component";
+import { ScoresComponent } from "../pages/minesweeper/scores/scores.component";
 import { SettingsComponent } from "../components/minesweeper/settings/settings.component";
+import { MinesweeperComponent } from "../pages/minesweeper/minesweeper/minesweeper.component";
 
 @NgModule({
     declarations: [
+        ScoresComponent,
         SettingsComponent,
         MinesweeperComponent,
     ],

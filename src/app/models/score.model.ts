@@ -1,6 +1,8 @@
-import { GameType } from "../enums/game-type.enum"
+import { User } from "./user.model"
 
 export class Score {
+    _id?: string
     time: string
-    gameType: GameType
+    gameType: string
+    user?: User
 }

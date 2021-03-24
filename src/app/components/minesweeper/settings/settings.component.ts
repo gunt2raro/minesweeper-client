@@ -60,6 +60,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
                 this.dimensions.mines = 99
                 break;
         }
+        this.dimensions.gameType = gameType
         this.dialogRef.close(this.dimensions)
     }
 

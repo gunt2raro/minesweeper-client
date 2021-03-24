@@ -1,18 +1,24 @@
-import { timer } from 'rxjs';
 import * as moment from 'moment'
+import { Subscription, timer } from 'rxjs';
 import { Cel } from "src/app/models/cel.model";
-import { Component, OnInit } from "@angular/core";
+import { User } from 'src/app/models/user.model';
 import { MatDialog } from '@angular/material/dialog';
+import { AutoUnsubscribe } from 'ngx-auto-unsubscribe';
+import { AuthService } from 'src/app/services/auth.service';
 import { Dimensions } from 'src/app/models/dimensions.model';
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { ScoreService } from 'src/app/services/score.service';
 import { MinesweeperService } from "src/app/services/minesweeper.service";
 import { SettingsComponent } from 'src/app/components/minesweeper/settings/settings.component';
 
+@AutoUnsubscribe()
 @Component({
     templateUrl: './minesweeper.component.html',
     styleUrls: ['./minesweeper.component.scss']
 })
-export class MinesweeperComponent implements OnInit {
+export class MinesweeperComponent implements OnInit, OnDestroy {
 
+    public user: User
     public game: Cel[][]
     public dateToShow: Date
     public time: moment.Moment
@@ -26,10 +32,21 @@ export class MinesweeperComponent implements OnInit {
     public flagging: boolean = false
     public gameStared: boolean = false
 
+    private userSub: Subscription
+    private clockSub: Subscription
+
     constructor(
         private dialog: MatDialog,
+        private authService: AuthService,
+        private scoreService: ScoreService,
         private service: MinesweeperService
-    ) { }
+    ) { 
+        this.userSub = this.authService
+            .currentUser
+            .subscribe(cu => {
+                this.user = cu
+            })
+    }
 
     ngOnInit() {
         this.resetDate()
@@ -38,7 +55,7 @@ export class MinesweeperComponent implements OnInit {
         } else {
             this.openSettingsDialog()
         }
-        timer(
+        this.clockSub = timer(
             0,
             1000
         ).subscribe(_ => {
@@ -150,6 +167,13 @@ export class MinesweeperComponent implements OnInit {
                 .then((res: any) => {
                     this.game = res.data
                     this.winner = res.winner
+                    if(this.winner && this.user) {
+                        this.scoreService
+                            .create({
+                                time: this.time.format("HH:mm:ss"),
+                                gameType: this.dimensions.gameType.toString(),
+                            })
+                    }
                 })
         }
     }
@@ -161,4 +185,6 @@ export class MinesweeperComponent implements OnInit {
         this.gameStared = false
         this.getGame()
     }
+
+    ngOnDestroy() {}
 }

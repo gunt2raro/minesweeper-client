@@ -49,5 +49,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
             ])
     }
 
+    goToScores() {
+        this.router
+            .navigate([
+                'minesweeper',
+                'scores'
+            ])
+    }
+
     ngOnDestroy() { }
 }

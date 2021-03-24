@@ -1,7 +1,7 @@
 import { BehaviorSubject } from "rxjs";
 import { Injectable } from "@angular/core";
 import { User } from "../models/user.model";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 
 @Injectable({
@@ -38,5 +38,16 @@ export class AuthService {
     getCurrentUser(): User {
         const temp = localStorage.getItem('user')
         return temp ? JSON.parse(temp) : null
+    }
+
+    generateHeaders(): HttpHeaders {
+        console.log(this.user.value)
+        let headers = new HttpHeaders()
+        headers = headers.set(
+            'Authorization',
+            this.user.value.token ?
+                `Bearer ${this.user.value.token}` : ''
+        );
+        return headers
     }
 }
