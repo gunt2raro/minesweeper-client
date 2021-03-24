@@ -1,7 +1,7 @@
 import { Subscription } from "rxjs";
+import { Router } from "@angular/router";
 import { AuthService } from "src/app/services/auth.service";
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
 
 @Component({
     selector: 'appHeader',
